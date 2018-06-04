@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Game_development on AFCode</title>
-    <link>http://afeather123.github.io/tags/game_development/</link>
-    <description>Recent content in Game_development on AFCode</description>
+    <title>Javascript on AFCode</title>
+    <link>http://afeather123.github.io/tags/javascript/</link>
+    <description>Recent content in Javascript on AFCode</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 03 Jun 2018 11:59:26 -0700</lastBuildDate>
     
-	<atom:link href="http://afeather123.github.io/tags/game_development/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://afeather123.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

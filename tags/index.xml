@@ -6,7 +6,7 @@
     <description>Recent content in Tags on AFCode</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 02 Jun 2018 20:41:13 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 03 Jun 2018 11:59:26 -0700</lastBuildDate>
     
 	<atom:link href="http://afeather123.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,27 +14,18 @@
     <item>
       <title>Game_development</title>
       <link>http://afeather123.github.io/tags/game_development/</link>
-      <pubDate>Sat, 02 Jun 2018 20:41:13 -0700</pubDate>
+      <pubDate>Sun, 03 Jun 2018 11:59:26 -0700</pubDate>
       
       <guid>http://afeather123.github.io/tags/game_development/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Gamedev</title>
-      <link>http://afeather123.github.io/tags/gamedev/</link>
-      <pubDate>Sat, 02 Jun 2018 20:41:13 -0700</pubDate>
+      <title>Javascript</title>
+      <link>http://afeather123.github.io/tags/javascript/</link>
+      <pubDate>Sun, 03 Jun 2018 11:59:26 -0700</pubDate>
       
-      <guid>http://afeather123.github.io/tags/gamedev/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Godot</title>
-      <link>http://afeather123.github.io/tags/godot/</link>
-      <pubDate>Sat, 02 Jun 2018 20:41:13 -0700</pubDate>
-      
-      <guid>http://afeather123.github.io/tags/godot/</guid>
+      <guid>http://afeather123.github.io/tags/javascript/</guid>
       <description></description>
     </item>
     

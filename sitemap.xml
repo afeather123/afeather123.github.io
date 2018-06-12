@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://afeather123.github.io/posts/advice-from-a-novice-programmer-to-an-absolute-beginner/</loc>
+    <lastmod>2018-06-12T09:35:06-07:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://afeather123.github.io/posts/creating-interactive-dialogue-w-json-part-two/</loc>
     <lastmod>2018-06-03T11:59:26-07:00</lastmod>
   </url>
@@ -14,7 +19,7 @@
   
   <url>
     <loc>http://afeather123.github.io/</loc>
-    <lastmod>2018-06-03T11:59:26-07:00</lastmod>
+    <lastmod>2018-06-12T09:35:06-07:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -41,7 +46,7 @@
   
   <url>
     <loc>http://afeather123.github.io/posts/</loc>
-    <lastmod>2018-06-03T11:59:26-07:00</lastmod>
+    <lastmod>2018-06-12T09:35:06-07:00</lastmod>
     <priority>0</priority>
   </url>
   

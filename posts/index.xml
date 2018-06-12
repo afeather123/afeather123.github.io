@@ -6,10 +6,19 @@
     <description>Recent content in Posts on AFCode</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Jun 2018 11:59:26 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 12 Jun 2018 09:35:06 -0700</lastBuildDate>
     
 	<atom:link href="http://afeather123.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Advice From a Novice Programmer to an Absolute Beginner</title>
+      <link>http://afeather123.github.io/posts/advice-from-a-novice-programmer-to-an-absolute-beginner/</link>
+      <pubDate>Tue, 12 Jun 2018 09:35:06 -0700</pubDate>
+      
+      <guid>http://afeather123.github.io/posts/advice-from-a-novice-programmer-to-an-absolute-beginner/</guid>
+      <description>A few weeks ago, I attended a talk from a Google employee who gave advice about working in the software industry, sharing his perspective on how to get a job and continue advancing your career, what the most important skills are to foster, and lots of other valuable advice. The talk really got me thinking and I&amp;rsquo;m really glad that I went. One piece of wisdom that he shared was that even when you are just starting out, there is always someone lower on the totem pole then you; the person who is in the place that you just were, running into the problems you just learned how to solve.</description>
+    </item>
     
     <item>
       <title>Creating Interactive Dialogue in Javascript with JSON: Part 2</title>

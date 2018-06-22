@@ -6,15 +6,24 @@
     <description>Recent content in Tags on AFKode</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 03 Jun 2018 11:59:26 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 12 Jun 2018 09:35:06 -0700</lastBuildDate>
     
 	<atom:link href="http://afeather123.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>Advice</title>
+      <link>http://afeather123.github.io/tags/advice/</link>
+      <pubDate>Tue, 12 Jun 2018 09:35:06 -0700</pubDate>
+      
+      <guid>http://afeather123.github.io/tags/advice/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Game_development</title>
       <link>http://afeather123.github.io/tags/game_development/</link>
-      <pubDate>Sun, 03 Jun 2018 11:59:26 -0700</pubDate>
+      <pubDate>Mon, 04 Jun 2018 10:48:42 -0700</pubDate>
       
       <guid>http://afeather123.github.io/tags/game_development/</guid>
       <description></description>
@@ -23,9 +32,18 @@
     <item>
       <title>Javascript</title>
       <link>http://afeather123.github.io/tags/javascript/</link>
-      <pubDate>Sun, 03 Jun 2018 11:59:26 -0700</pubDate>
+      <pubDate>Mon, 04 Jun 2018 10:48:42 -0700</pubDate>
       
       <guid>http://afeather123.github.io/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Opinion</title>
+      <link>http://afeather123.github.io/tags/opinion/</link>
+      <pubDate>Tue, 12 Jun 2018 09:35:06 -0700</pubDate>
+      
+      <guid>http://afeather123.github.io/tags/opinion/</guid>
       <description></description>
     </item>
     

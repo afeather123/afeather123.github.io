@@ -50,19 +50,6 @@ Now, let&amp;rsquo;s get into writing the code to work on that file. To start we
     </item>
     
     <item>
-      <title></title>
-      <link>http://afeather123.github.io/posts/ternary-operators/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://afeather123.github.io/posts/ternary-operators/</guid>
-      <description>A ternary operator is an expression that exists in most programming languages that takes 3 arguments; they look like this:
-conditional_statement ? true_result : false_result;
-Example:
-let burner_on = true let stove_temp = burner_on === true ? &amp;lsquo;The stove is hot&amp;rsquo; : &amp;lsquo;The stove is cool&amp;rsquo; console.log(stove_temp) // This will print out &amp;lsquo;The stove is hot&amp;rsquo;
-Ternary operators have a conditional statement, a &amp;lsquo;true&amp;rsquo; result, and a &amp;lsquo;false&amp;rsquo; result. It then returns either the true or false result based on whether the condition resolves to true or false.</description>
-    </item>
-    
-    <item>
       <title>About</title>
       <link>http://afeather123.github.io/about/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>

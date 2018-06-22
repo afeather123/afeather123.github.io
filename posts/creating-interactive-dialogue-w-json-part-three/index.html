@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  <title>Creating Interactive Dialogue With Json Part 3: Choices</title>
+  <meta name="author" content="" />
+  <meta name="description"
+        content="Now to the good stuff. Redirecting from one piece of dialogue to the next is the bread and butter of most stories in games, and at the end of the day much of what you write will end up will likely be..."/>
+
+
+  <meta name="generator" content="Hugo 0.40.3" />
+
+  
+  <meta itemprop="name" content="Creating Interactive Dialogue With Json Part 3: Choices"/>
+  <meta itemprop="description"
+        content="Now to the good stuff. Redirecting from one piece of dialogue to the next is the bread and butter of most stories in games, and at the end of the day much of what you write will end up will likely be..."/>
+  <meta itemprop="image"
+        content=""/>
+
+  
+  <meta property="og:title" content="Creating Interactive Dialogue With Json Part 3: Choices"/>
+  <meta property="og:type"
+        content="article"/>
+  <meta property="og:url" content="http://afeather123.github.io/posts/creating-interactive-dialogue-w-json-part-three/"/>
+  <meta property="og:image"
+        content=""/>
+  <meta property="og:description"
+        content="Now to the good stuff. Redirecting from one piece of dialogue to the next is the bread and butter of most stories in games, and at the end of the day much of what you write will end up will likely be..."/>
+  <meta property="og:site_name" content="AFKode"/>
+  <meta property="article:published_time"
+        content="2018-06-04T10:48:42-07:00"/>
+  <meta property="article:section" content="posts"/>
+
+  
+  
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:site"
+        content=""/>
+  <meta name="twitter:title" content="Creating Interactive Dialogue With Json Part 3: Choices"/>
+  <meta name="twitter:description"
+        content="Now to the good stuff. Redirecting from one piece of dialogue to the next is the bread and butter of most stories in games, and at the end of the day much of what you write will end up will likely be..."/>
+  <meta name="twitter:creator"
+        content=""/>
+  <meta name="twitter:image:src"
+        content=""/>
+
+  
+
+  
+  <link rel="stylesheet" type="text/css" href="/css/capsule.min.css"/>
+  
+  
+
+  
+  </head>
+
+
+  <body style="min-height:100vh;display:flex;flex-direction:column">
+
+    <nav class="navbar has-shadow is-white"
+     role="navigation" aria-label="main navigation">
+  <div class="container">
+
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <div class="title is-4">&nbsp;AFKode</div>
+      </a>
+
+      <a class="navbar-item pull-right" href="/about/">
+        About
+      </a>
+
+
+      
+      
+      <label class="button navbar-burger is-white" for="navbar-burger-state">
+        <span></span>                               
+        <span></span>
+        <span></span>
+      </label>
+    </div>
+
+    
+    <input type="checkbox" id="navbar-burger-state"/>
+
+    <div class="navbar-menu">
+      <div class="navbar-end">
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+
+    <section class="section" style="flex:1">
+
+      
+      <div class="container">
+        <p class="title">Creating Interactive Dialogue With Json Part 3: Choices</p>
+        <p class="subtitle">Jun 4, 2018</p>
+
+        
+
+        
+        <div class="content">
+          <p>Now to the good stuff. Redirecting from one piece of dialogue to the next is the bread and butter of most stories in games, and at the end of the day much of what you write will end up will likely be linear in nature; however, what makes games unique in terms of story telling is the ability to add interactivity, to create an experience that changes based on user input.</p>
+
+<p>So what will we need to implement choice in our game? We already defined our MakeChoice function, but we have yet to implement it. Our function will need to:</p>
+
+<ul>
+<li>Take in a choice object, passed out to listeners by our NextNode function</li>
+<li>Perform all of the operations on variables described in the &lsquo;set_conditions&rsquo; array of the choice passed in</li>
+<li>Get the next valid redirect from the choice and call NextNode with it</li>
+</ul>
+
+<p>We&rsquo;ll be building a basic affection system where the character changes their action in the end based on how much they like / dislike you based on your actions. Here&rsquo;s an example:</p>
+
+<div>
+    <div class="content">
+        <div class="box">
+            <strong id="characterName0"></strong>
+            <p id="text0"></p>
+            <div id="buttons0"></div>
+        </div>    
+    </div>
+    
+</div>
+
+<script type="text/javascript">
+    var Story;
+    if (Story !== undefined) {
+        console.log("Story is already defined");
+    } else {
+        import('/js/story.js')
+        .then(result => {
+            Story = result.Story;
+            MakeUIHandler();
+            function MakeUIHandler() {
+                const characterName = document.querySelector('#characterName0');
+                const buttons = document.querySelector('#buttons0');
+                const displayText = document.querySelector('#text0');
+                console.log('\/json\/testChoices.json')
+                fetch('\/json\/testChoices.json')
+                .then(function(response){
+                    return response.json();
+                })
+                .then(function(myJson) {
+
+                    let story = new Story(myJson);
+                    story.SubscribeData(data => {
+                        console.log(data);
+                        displayText.innerHTML = data.data.text;
+                        ClearNextButtons();
+                        if(data.redirect) {
+                            AddNextButton(data.data.response_text, data.redirect)
+                        }
+                        if(data.choices) {
+                            data.choices.forEach(choice => {
+                                AddChoiceButton(choice);
+                            })
+                        }
+                        if(!data.redirect && !data.choices) {
+                            AddResetButton();
+                        }
+                    })
+                    story.Start();
+
+                    function ClearNextButtons() {
+                        while (buttons.firstChild) {
+                            buttons.removeChild(buttons.firstChild);
+                        }
+                    }
+
+                    function AddChoiceButton(choice, callback) {
+                        let button = document.createElement('button');
+                        let innerText = document.createTextNode(choice.text);
+                        button.appendChild(innerText);
+                        button.classList.add('button');
+                        button.classList.add('is-small');
+                        button.addEventListener('click', event => {
+                            story.MakeChoice(choice);
+                            if(callback) callback();
+                        })
+                        buttons.appendChild(button);
+                    }
+                    
+                    function AddResetButton() {
+                        let button = document.createElement('button');
+                        let innerText = document.createTextNode('Reset');
+                        button.appendChild(innerText);
+                        button.classList.add('button');
+                        button.classList.add('is-small');
+                        button.addEventListener('click', event => {
+                            story.Reset();
+                            story.Start();
+                        })
+                        buttons.appendChild(button);
+                    }
+
+                    function AddNextButton(text,next, callback) {
+                        let button = document.createElement('button');
+                        let innerText = document.createTextNode(text);
+                        button.appendChild(innerText);
+                        button.classList.add('button');
+                        button.classList.add('is-small');
+                        button.addEventListener('click', event => {
+                            story.NextNode(next);
+                            if(callback) callback();
+                        })
+                        buttons.appendChild(button);
+                    }
+                });
+            }
+        })
+    }
+
+    
+</script>
+
+<p><br/></p>
+
+<p><a href="/json/testChoices.json">Here&rsquo;s</a> the json we&rsquo;ll be using for this project, and <a href="https://github.com/afeather123/story_interpreter_choice_exercise">here&rsquo;s</a> a starter respository with some tests if you choose to use them. As before, I highly reccomend that you try and work it out yourself first! If you get stuck or frustrated you can always come back to look for hints or the solution. If you want to try it yourself, stop here!</p>
+
+<p>So, the first order of business is taking the &lsquo;set_conditions&rsquo; inside of the choice passed into the argument and operate on our variables. Similar to how we defined CheckCondition and CheckConditionSet in the previous section, I&rsquo;m going to define a SetVariable function which takes one variable setter and applies it, and a SetVariableSet function (silly name, but it works) which simply calls that function for each object in the &lsquo;set_condition&rsquo; array.</p>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">SetVariable</span>(<span style="color:#a6e22e">setter</span>) {
+    <span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">operator</span>) {
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;=&#39;</span><span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variables</span>[<span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">variable</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">value</span>;
+            <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;*=&#39;</span><span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variables</span>[<span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">variable</span>] <span style="color:#f92672">*=</span> <span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">value</span>;
+            <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;/=&#39;</span><span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variables</span>[<span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">variable</span>] <span style="color:#960050;background-color:#1e0010">/= setter.value;</span>
+            <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;+=&#39;</span><span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variables</span>[<span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">variable</span>] <span style="color:#f92672">+=</span> <span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">value</span>;
+            <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;-=&#39;</span><span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variables</span>[<span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">variable</span>] <span style="color:#f92672">-=</span> <span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">value</span>;
+            <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;toggle&#39;</span><span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variables</span>[<span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">variable</span>] <span style="color:#f92672">!=</span> <span style="color:#a6e22e">storydata</span>.<span style="color:#a6e22e">variables</span>[<span style="color:#a6e22e">setter</span>.<span style="color:#66d9ef">var</span>];
+            <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">case</span> <span style="color:#e6db74">&#39;random&#39;</span><span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">variables</span>[<span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">variable</span>] <span style="color:#f92672">=</span> Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">setter</span>.<span style="color:#a6e22e">value</span>);
+            <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;Invalid operator&#39;</span>);
+        }
+}
+
+<span style="color:#a6e22e">SetVariableSet</span>(<span style="color:#a6e22e">setters</span>) {
+    <span style="color:#a6e22e">setters</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">setter</span> =&gt; {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">SetVariable</span>(<span style="color:#a6e22e">setter</span>);
+    })
+}
+</code></pre></div></p>
+
+<p>Finally, if you recall, when we wrote the implementation for NextNode in the previous section, we created a function GetValidRedirect which takes an array of redirects and spits out the first valid one. Since choices also store a list of redirects just like nodes without choices, we can completely reuse this function! MakeChoice ends up looking like this:</p>
+
+<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">MakeChoice</span>(<span style="color:#a6e22e">choice</span>) {
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">choice</span>.<span style="color:#a6e22e">set_conditions</span>) {
+        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">SetVariables</span>(<span style="color:#a6e22e">choice</span>.<span style="color:#a6e22e">set_conditions</span>);
+    }
+    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">redirect</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">GetValidRedirect</span>(<span style="color:#a6e22e">choice</span>.<span style="color:#a6e22e">redirects</span>);
+    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">NextNode</span>(<span style="color:#a6e22e">redirect</span>.<span style="color:#a6e22e">node_name</span>);
+}
+</code></pre></div></p>
+
+<p>If you&rsquo;re newer to Javascript or programming, hopefully this case shows how valuable it can be to take the time to break your functionality into smaller functions which you glue together. If we had written NextNode as one monolithic function instead of breaking it up into a few pieces, we would have had to go digging back through the code for NextNode to copy paste into MakeChoice. We might have spent a decent amount of time rewriting the solution for a problem we had already solved. Try and identify as you&rsquo;re writing when it seems like a good idea to take the time to break a piece of code into its own function, or even its own class / object. It may be more work upfront, but it makes your code much more readable, organized, reusable, and it will make refactoring it much easier.</p>
+
+<p>In the next section, we&rsquo;ll be finalizing things by using our newly created class with some DOM manipulation to make our simple GUI.</p>
+
+        </div>
+
+        
+
+        
+
+      </div>
+
+    </section>
+
+    <section class="section">
+      
+      <div class="container">
+  <div class="level">
+
+    <div class="level-left">
+      <div class="level-item">
+        <p class="control has-addons">
+          <a class="button" href="http://afeather123.github.io/posts/advice-from-a-novice-programmer-to-an-absolute-beginner/">
+            <span class="icon is-small"><i class="fa fa-chevron-left"></i></span>
+            <span class="is-hidden-touch is-hidden-desktop-only">
+              Advice From a Novice Programmer to an Absolute Beginner
+            </span>
+            <span class="is-hidden-touch is-hidden-widescreen">
+              Advice From a Novice Programmer to an Absolute Beginner
+            </span>
+            <span class="is-hidden-mobile is-hidden-desktop">
+              Advice From a Novice Programmer to an Absolute...
+            </span>
+            <span class="is-hidden-tablet">
+              Advice From a Novice Programmer to an...
+            </span>
+            
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <div class="level-right">
+      <div class="level-item">
+        <p class="control has-addons">
+          <a class="button" href="http://afeather123.github.io/posts/creating-interactive-dialogue-w-json-part-two/">
+            <span class="is-hidden-touch is-hidden-desktop-only">
+              Creating Interactive Dialogue in Javascript with JSON Part 2: Redirects
+            </span>
+            <span class="is-hidden-touch is-hidden-widescreen">
+              Creating Interactive Dialogue in Javascript with JSON Part 2: Redirects
+            </span>
+            <span class="is-hidden-mobile is-hidden-desktop">
+              Creating Interactive Dialogue in Javascript with...
+            </span>
+            <span class="is-hidden-tablet">
+              Creating Interactive Dialogue in...
+            </span>
+            
+            <span class="icon is-small"><i class="fa fa-chevron-right"></i></span>
+          </a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+      <br>
+      
+      <div class="container">
+  <div class="is-flex">
+    <span>
+      <a class="button">Share</a>
+    </span>
+
+    &nbsp;
+
+    <span>
+      
+      <a class="button"
+         href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-part-three%2f">
+        <span class="icon"><i class="fa fa-facebook"></i></span>
+      </a>
+
+      
+      <a class="button"
+         href="https://twitter.com/intent/tweet?url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-part-three%2f&text=Creating%20Interactive%20Dialogue%20With%20Json%20Part%203%3a%20Choices">
+        <span class="icon"><i class="fa fa-twitter"></i></span>
+      </a>
+
+      
+      <a class="button"
+         href="https://news.ycombinator.com/submitlink?u=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-part-three%2f">
+        <span class="icon"><i class="fa fa-hacker-news"></i></span>
+      </a>
+
+      
+      <a class="button"
+         href="https://reddit.com/submit?url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-part-three%2f&title=Creating%20Interactive%20Dialogue%20With%20Json%20Part%203%3a%20Choices">
+        <span class="icon"><i class="fa fa-reddit"></i></span>
+      </a>
+
+      
+      <a class="button"
+         href="https://plus.google.com/share?url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-part-three%2f">
+        <span class="icon"><i class="fa fa-google-plus"></i></span>
+      </a>
+
+      
+      <a class="button"
+         href="https://www.linkedin.com/shareArticle?url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-part-three%2f&title=Creating%20Interactive%20Dialogue%20With%20Json%20Part%203%3a%20Choices">
+        <span class="icon"><i class="fa fa-linkedin"></i></span>
+      </a>
+
+      
+      <a class="button"
+         href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-part-three%2f&title=Creating%20Interactive%20Dialogue%20With%20Json%20Part%203%3a%20Choices&caption=">
+        <span class="icon"><i class="fa fa-tumblr"></i></span>
+      </a>
+
+      
+      <a class="button"
+         href="https://pinterest.com/pin/create/bookmarklet/?media=&url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-part-three%2f&description=Creating%20Interactive%20Dialogue%20With%20Json%20Part%203%3a%20Choices">
+        <span class="icon"><i class="fa fa-pinterest"></i></span>
+      </a>
+
+      
+      <a class="button"
+         href="whatsapp://send?text=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-part-three%2f">
+        <span class="icon"><i class="fa fa-whatsapp"></i></span>
+      </a>
+
+      
+      <a class="button"
+         href="https://web.skype.com/share?url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-part-three%2f">
+        <span class="icon"><i class="fa fa-skype"></i></span>
+      </a>
+
+      
+      
+      
+      
+      
+
+      
+      
+      
+      
+      
+    </span>
+  </div>
+</div>
+
+
+      <br>
+
+      
+      
+
+
+      <br>
+
+      <div class="container">
+        <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "afeather123-github-io" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </div>
+    </section>
+    
+
+    <footer class="footer">
+  <div class="container">
+    <nav class="level">
+
+      <div class="level-item has-text-centered">
+        <a href="/posts/" class="heading">
+          <span class="header">Posts</span>
+        </a>
+      </div>
+
+    </nav>
+
+    <nav class="level">
+
+      <div class="level-left has-text-centered">
+        <div class="level-item">
+          <form class="control has-icon has-icon-right" method="get"
+                action="https://duckduckgo.com">
+            <input class="input" type="text" name="q" maxlength="255"
+                   placeholder="Search">
+            <input class="input" type="hidden" name="sites" value="http://afeather123.github.io">
+            <span class="icon is-small"><i class="fa fa-search"></i></span>
+          </form>
+        </div>
+      </div>
+
+      <div class="level-right has-text-centered">
+        <div class="level-item">
+
+          <a class="button" href="http://afeather123.github.io">
+            <span class="icon"><i class="fa fa-home"></i></span>
+          </a> &nbsp;
+
+          
+
+          <a class="button" href="http://afeather123.github.io/index.xml">
+            <span class="icon"><i class="fa fa-rss"></i></span>
+          </a>
+
+        </div>
+      </div>
+
+    </nav>
+  </div>
+</footer>
+
+  </body>
+
+</html>

@@ -21,7 +21,16 @@
     </item>
     
     <item>
-      <title>Creating Interactive Dialogue in Javascript with JSON: Part 2</title>
+      <title>Creating Interactive Dialogue With Json Part 3: Choices</title>
+      <link>http://afeather123.github.io/posts/creating-interactive-dialogue-w-json-part-three/</link>
+      <pubDate>Mon, 04 Jun 2018 10:48:42 -0700</pubDate>
+      
+      <guid>http://afeather123.github.io/posts/creating-interactive-dialogue-w-json-part-three/</guid>
+      <description>Now to the good stuff. Redirecting from one piece of dialogue to the next is the bread and butter of most stories in games, and at the end of the day much of what you write will end up will likely be linear in nature; however, what makes games unique in terms of story telling is the ability to add interactivity, to create an experience that changes based on user input.</description>
+    </item>
+    
+    <item>
+      <title>Creating Interactive Dialogue in Javascript with JSON Part 2: Redirects</title>
       <link>http://afeather123.github.io/posts/creating-interactive-dialogue-w-json-part-two/</link>
       <pubDate>Sun, 03 Jun 2018 11:59:26 -0700</pubDate>
       
@@ -31,7 +40,7 @@ Now, let&amp;rsquo;s get into writing the code to work on that file. To start we
     </item>
     
     <item>
-      <title>Creating Interactive Dialogue in Javascript with JSON: Part 1</title>
+      <title>Creating Interactive Dialogue in Javascript with JSON Part 1: The Problem</title>
       <link>http://afeather123.github.io/posts/creating-interactive-dialogue-w-json-intro/</link>
       <pubDate>Sat, 02 Jun 2018 20:41:13 -0700</pubDate>
       

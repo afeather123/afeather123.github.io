@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
 
   <head>
   <meta charset="utf-8" />
@@ -12,7 +12,7 @@
         content=""/>
 
 
-  <meta name="generator" content="Hugo 0.40.3" />
+  <meta name="generator" content="Hugo 0.91.2" />
 
   
   <meta itemprop="name" content="Categories"/>
@@ -30,7 +30,7 @@
         content=""/>
   <meta property="og:description"
         content=""/>
-  <meta property="og:site_name" content="AFKode"/>
+  <meta property="og:site_name" content="AFCode"/>
   <meta property="article:section" content="categories"/>
 
   
@@ -47,10 +47,7 @@
         content=""/>
 
   
-  <link href="http://afeather123.github.io/categories/index.xml" rel="alternate" type="application/rss+xml"
-        title="AFKode"/>
-  <link href="http://afeather123.github.io/categories/index.xml" rel="feed" type="application/rss+xml"
-        title="AFKode"/>
+    <link rel="alternate" type="application/rss+xml" href="http://afeather123.github.io/categories/index.xml" title="AFCode" />
 
   
   <link rel="stylesheet" type="text/css" href="/css/capsule.min.css"/>
@@ -69,25 +66,23 @@
 
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
-        <div class="title is-4">&nbsp;AFKode</div>
+        <div class="title is-4">&nbsp;AFCode</div>
       </a>
 
-      <a class="navbar-item pull-right" href="/about/">
-        About
-      </a>
-
-
       
-      
-      <label class="button navbar-burger is-white" for="navbar-burger-state">
-        <span></span>                               
-        <span></span>
-        <span></span>
+      <label role="button" class="navbar-burger has-text-dark"
+             aria-label="menu" aria-expanded="false"
+             for="navbar-burger-state">
+             
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </label>
     </div>
 
     
     <input type="checkbox" id="navbar-burger-state"/>
+                          
 
     <div class="navbar-menu">
       <div class="navbar-end">
@@ -102,7 +97,7 @@
 
       
       <div class="container" style="min-height:56vh">
-        <p class="title">List of Categories</p>
+        <h1 class="title">List of Categories</h1>
         <ul>
         </ul>
       </div>
@@ -114,7 +109,7 @@
     <nav class="level">
 
       <div class="level-item has-text-centered">
-        <a href="/posts/" class="heading">
+        <a href="http://afeather123.github.io/posts/" class="heading">
           <span class="header">Posts</span>
         </a>
       </div>
@@ -125,12 +120,13 @@
 
       <div class="level-left has-text-centered">
         <div class="level-item">
-          <form class="control has-icon has-icon-right" method="get"
+          <form class="control has-icons has-icons-right" method="get"
                 action="https://duckduckgo.com">
             <input class="input" type="text" name="q" maxlength="255"
                    placeholder="Search">
-            <input class="input" type="hidden" name="sites" value="http://afeather123.github.io">
-            <span class="icon is-small"><i class="fa fa-search"></i></span>
+            <input class="input" type="hidden" name="sites"
+                   value="http://afeather123.github.io">
+            <span class="icon is-small is-right"><i class="fas fa-search"></i></span>
           </form>
         </div>
       </div>
@@ -138,14 +134,15 @@
       <div class="level-right has-text-centered">
         <div class="level-item">
 
-          <a class="button" href="http://afeather123.github.io">
-            <span class="icon"><i class="fa fa-home"></i></span>
+          <a class="button" href="/">
+            <span class="icon"><i class="fas fa-home"></i></span>
           </a> &nbsp;
 
           
 
-          <a class="button" href="http://afeather123.github.io/index.xml">
-            <span class="icon"><i class="fa fa-rss"></i></span>
+          <a class="button"
+             href="/categories/index.xml">
+            <span class="icon"><i class="fas fa-rss"></i></span>
           </a>
 
         </div>

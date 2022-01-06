@@ -1,49 +1,36 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on AFKode</title>
+    <title>Tags on AFCode</title>
     <link>http://afeather123.github.io/tags/</link>
-    <description>Recent content in Tags on AFKode</description>
+    <description>Recent content in Tags on AFCode</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 Jun 2018 09:35:06 -0700</lastBuildDate>
-    
-	<atom:link href="http://afeather123.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 02 Jun 2018 20:41:13 -0700</lastBuildDate><atom:link href="http://afeather123.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Advice</title>
-      <link>http://afeather123.github.io/tags/advice/</link>
-      <pubDate>Tue, 12 Jun 2018 09:35:06 -0700</pubDate>
-      
-      <guid>http://afeather123.github.io/tags/advice/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Game_development</title>
+      <title>game_development</title>
       <link>http://afeather123.github.io/tags/game_development/</link>
-      <pubDate>Mon, 04 Jun 2018 10:48:42 -0700</pubDate>
+      <pubDate>Sat, 02 Jun 2018 20:41:13 -0700</pubDate>
       
       <guid>http://afeather123.github.io/tags/game_development/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Javascript</title>
-      <link>http://afeather123.github.io/tags/javascript/</link>
-      <pubDate>Mon, 04 Jun 2018 10:48:42 -0700</pubDate>
+      <title>gamedev</title>
+      <link>http://afeather123.github.io/tags/gamedev/</link>
+      <pubDate>Sat, 02 Jun 2018 20:41:13 -0700</pubDate>
       
-      <guid>http://afeather123.github.io/tags/javascript/</guid>
+      <guid>http://afeather123.github.io/tags/gamedev/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Opinion</title>
-      <link>http://afeather123.github.io/tags/opinion/</link>
-      <pubDate>Tue, 12 Jun 2018 09:35:06 -0700</pubDate>
+      <title>godot</title>
+      <link>http://afeather123.github.io/tags/godot/</link>
+      <pubDate>Sat, 02 Jun 2018 20:41:13 -0700</pubDate>
       
-      <guid>http://afeather123.github.io/tags/opinion/</guid>
+      <guid>http://afeather123.github.io/tags/godot/</guid>
       <description></description>
     </item>
     

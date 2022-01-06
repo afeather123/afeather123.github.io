@@ -1,66 +1,51 @@
 <!DOCTYPE html>
-<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<html lang="en" dir="ltr" itemscope itemtype="http://schema.org/Article">
 
   <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
-  <title>Creating Interactive Dialogue in Javascript with JSON Part 1: The Problem</title>
+  <title>Creating Interactive Dialogue in Javascript with JSON: Part 1</title>
   <meta name="author" content="" />
   <meta name="description"
-        content="In this series I&rsquo;m going to go over creating a Javascript program that iterates over JSON to tell an interactive story.
+        content="In this series I&rsquo;m going to go over creating a Javascript program that iterates over JSON to tell an interactive story. Here&rsquo;s an example:..."/>
 
 
-
-Here&rsquo;s an example:..."/>
-
-
-  <meta name="generator" content="Hugo 0.40.3" />
+  <meta name="generator" content="Hugo 0.91.2" />
 
   
-  <meta itemprop="name" content="Creating Interactive Dialogue in Javascript with JSON Part 1: The Problem"/>
+  <meta itemprop="name" content="Creating Interactive Dialogue in Javascript with JSON: Part 1"/>
   <meta itemprop="description"
-        content="In this series I&rsquo;m going to go over creating a Javascript program that iterates over JSON to tell an interactive story.
-
-
-
-Here&rsquo;s an example:..."/>
+        content="In this series I&rsquo;m going to go over creating a Javascript program that iterates over JSON to tell an interactive story. Here&rsquo;s an example:..."/>
   <meta itemprop="image"
         content=""/>
 
   
-  <meta property="og:title" content="Creating Interactive Dialogue in Javascript with JSON Part 1: The Problem"/>
+  <meta property="og:title" content="Creating Interactive Dialogue in Javascript with JSON: Part 1"/>
   <meta property="og:type"
         content="article"/>
   <meta property="og:url" content="http://afeather123.github.io/posts/creating-interactive-dialogue-w-json-intro/"/>
   <meta property="og:image"
         content=""/>
   <meta property="og:description"
-        content="In this series I&rsquo;m going to go over creating a Javascript program that iterates over JSON to tell an interactive story.
-
-
-
-Here&rsquo;s an example:..."/>
-  <meta property="og:site_name" content="AFKode"/>
+        content="In this series I&rsquo;m going to go over creating a Javascript program that iterates over JSON to tell an interactive story. Here&rsquo;s an example:..."/>
+  <meta property="og:site_name" content="AFCode"/>
   <meta property="article:published_time"
         content="2018-06-02T20:41:13-07:00"/>
   <meta property="article:section" content="posts"/>
+  <meta property="article:tag" content="godot"/>
   <meta property="article:tag" content="game_development"/>
-  <meta property="article:tag" content="javascript"/>
+  <meta property="article:tag" content="gamedev"/>
 
   
   
   <meta name="twitter:card" content="summary"/>
   <meta name="twitter:site"
         content=""/>
-  <meta name="twitter:title" content="Creating Interactive Dialogue in Javascript with JSON Part 1: The Problem"/>
+  <meta name="twitter:title" content="Creating Interactive Dialogue in Javascript with JSON: Part 1"/>
   <meta name="twitter:description"
-        content="In this series I&rsquo;m going to go over creating a Javascript program that iterates over JSON to tell an interactive story.
-
-
-
-Here&rsquo;s an example:..."/>
+        content="In this series I&rsquo;m going to go over creating a Javascript program that iterates over JSON to tell an interactive story. Here&rsquo;s an example:..."/>
   <meta name="twitter:creator"
         content=""/>
   <meta name="twitter:image:src"
@@ -85,25 +70,23 @@ Here&rsquo;s an example:..."/>
 
     <div class="navbar-brand">
       <a class="navbar-item" href="/">
-        <div class="title is-4">&nbsp;AFKode</div>
+        <div class="title is-4">&nbsp;AFCode</div>
       </a>
 
-      <a class="navbar-item pull-right" href="/about/">
-        About
-      </a>
-
-
       
-      
-      <label class="button navbar-burger is-white" for="navbar-burger-state">
-        <span></span>                               
-        <span></span>
-        <span></span>
+      <label role="button" class="navbar-burger has-text-dark"
+             aria-label="menu" aria-expanded="false"
+             for="navbar-burger-state">
+             
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </label>
     </div>
 
     
     <input type="checkbox" id="navbar-burger-state"/>
+                          
 
     <div class="navbar-menu">
       <div class="navbar-end">
@@ -118,19 +101,14 @@ Here&rsquo;s an example:..."/>
 
       
       <div class="container">
-        <p class="title">Creating Interactive Dialogue in Javascript with JSON Part 1: The Problem</p>
+        <h1 class="title">Creating Interactive Dialogue in Javascript with JSON: Part 1</h1>
         <p class="subtitle">Jun 2, 2018</p>
 
         
 
         
         <div class="content">
-          <p>In this series I&rsquo;m going to go over creating a Javascript program that iterates over JSON to tell an interactive story.</p>
-
-<p></p>
-
-<p>Here&rsquo;s an example:</p>
-
+          <p>In this series I&rsquo;m going to go over creating a Javascript program that iterates over JSON to tell an interactive story. Here&rsquo;s an example:</p>
 <div>
     <div class="content">
         <div class="box">
@@ -232,28 +210,19 @@ Here&rsquo;s an example:..."/>
 
     
 </script>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 <p>If you think that&rsquo;s pretty neat, well hey, why not follow along with this tutorial. I&rsquo;m going to go over:</p>
-
 <ul>
 <li>How an interactive story works on a conceptual level, so you can take that knowledge to any programming language and implement it yourself</li>
 <li>How we can use JSON to store information about our story</li>
 <li>The actually implementation behind the example you see above</li>
 </ul>
-
 <p>When we&rsquo;re done you&rsquo;ll have some code you could embed in your page to tell any story you like! So, let&rsquo;s start with the basics&hellip;</p>
-
 <h2 id="how-does-an-interactive-story-work">How does an interactive story work?</h2>
-
 <p>Before we even write a line of code it&rsquo;s important to consider what we&rsquo;re actually trying to do. Take a look at this very simple outline for a dialogue:</p>
-
-<p><img src="/img/story_demo.png" alt="image alt text" /></p>
-
+<p><img src="/img/story_demo.png" alt="image alt text"></p>
 <p><em>Squares represent dialogue and circles represent a choice for the player presented as a button</em></p>
-
-<p><div>
+<div>
     <div class="content">
         <div class="box">
             <strong id="characterName2"></strong>
@@ -353,15 +322,11 @@ Here&rsquo;s an example:..."/>
     }
 
     
-</script></p>
-
-<p><br></p>
-
+</script>
+<!-- raw HTML omitted -->
 <p>So, what does this do? The player is presented with 3 choices of pokemon, and depending on which one they pick, they get a different response,
 which then all collapse back into the same dialogue. After that the speaker throws out a differnent quip depending on which choice the player made. Just looking at the diagram you can get an idea of how we might want to model this problem; each piece of dialogue should be held in its own individual node, and we should be able to progress through the conversation by shifting from one node to the next; it would be silly if we had 3 different instances of the &ldquo;Regardless of which pokemon&hellip;&rdquo; dialogue stored for each of those nodes to transition to!</p>
-
 <p>Now let&rsquo;s talk about how those nodes shift from one to the next. If we look at the diagram, the very first dialogue we are presented with offers up 3 choices, which give us a different response depending on what we choose. After that we see that we transition from one section to the next with no input from the player to the &ldquo;Regardless of which pokemon&rdquo; text. Finally we transition again, also with no input from the player, but this time we are doing something different based on the choice the player made earlier. So let&rsquo;s get more specific about the functionality we need. A node:</p>
-
 <ul>
 <li>Has dialogue</li>
 <li>Can store information about the next node it will transition to</li>
@@ -369,20 +334,15 @@ which then all collapse back into the same dialogue. After that the speaker thro
 <li>Can store multiple transitions that vary based on choices / variables that were set earlier</li>
 <li>Can store choices</li>
 </ul>
-
 <p>And speaking of choices, given the example, we can assume that a choice at least needs to:</p>
-
 <ul>
 <li>Store the text of the choice (charmander, bulbasuar, squirtle)</li>
 <li>store a reference to the node it will transition to</li>
 <li>Be able to set internal variables somehow</li>
 </ul>
-
 <p>So what we are trying to do is figure out how we can store all this information as data in a file, and then write a program that can use that data to produce the functionality we want, in this case display texts and buttons to bring the player through the conversation. As mentioned earlier this tutorial is about using JSON to accomplish this task, but you can use other data formats, another common one being XML.</p>
-
 <p>Here&rsquo;s how we&rsquo;re going to be modeling those concepts in JSON:</p>
-
-<p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">{
     <span style="color:#75715e">// These represent the variables that can be stored by choices in the story.
 </span><span style="color:#75715e"></span>    <span style="color:#e6db74">&#34;variables&#34;</span><span style="color:#f92672">:</span> {
         <span style="color:#e6db74">&#34;this_is_a_variable&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;value&#34;</span>,
@@ -481,10 +441,8 @@ which then all collapse back into the same dialogue. After that the speaker thro
             }
         } 
     }
-}
-</code></pre></div></p>
-
-<p><div>
+}</code></pre></div>
+<div>
     <div class="content">
         <div class="box">
             <strong id="characterName3"></strong>
@@ -584,13 +542,10 @@ which then all collapse back into the same dialogue. After that the speaker thro
     }
 
     
-</script></p>
-
+</script>
 <p>You can take a look at the JSON for the intro example and the pokemon example <a href="/json/introToDialogue.json">here</a> and <a href="/json/pokemon.json">here</a>.</p>
+<p>Take a look and see if you can tell how the heirarchy of the data fits with what we described earlier. If you look at this and you feel like you have an idea of how you would implement this yourself using this data, why not take a stab at it? If you get stuck you can always refer back to the later sections for inspiration. If you look at this and you have no idea what first step you would take, then that is more than fine, because you are who the rest of these tutorials are made for! In the next section we&rsquo;ll be setting up the GUI so we can display our dialogue and buttons, and writing the code to process nodes that simply redirect from one to then next; after that we&rsquo;ll move on to adding choices, and then variables and conditions.</p>
 
-<p>Take a look and see if you can tell how the heirarchy of the data fits with what we described earlier. If you look at this and you feel like you have an idea of how you would implement this yourself using this data, why not take a stab at it? If you get stuck you can always refer back to the later sections for inspiration. If you look at this and you have no idea what first step you would take, then that is more than fine, because you are who the rest of these tutorials are made for! In the next section we&rsquo;ll focus on writing the code for iterating over the file, starting with simply redirecting from node to node.</p>
-
-<p><a href="/posts/creating-interactive-dialogue-w-json-part-two/">Next Section</a></p>
         </div>
 
         
@@ -600,13 +555,18 @@ which then all collapse back into the same dialogue. After that the speaker thro
 <div class="heading">Tags:</div>
 <div class="field is-grouped is-grouped-multiline">
   <div class="control">
+    <a href="/tags/godot">
+      <span class="tag">Godot</span>
+    </a>
+  </div>
+  <div class="control">
     <a href="/tags/game_development">
       <span class="tag">Game Development</span>
     </a>
   </div>
   <div class="control">
-    <a href="/tags/javascript">
-      <span class="tag">Javascript</span>
+    <a href="/tags/gamedev">
+      <span class="tag">Gamedev</span>
     </a>
   </div>
 </div>
@@ -624,12 +584,12 @@ which then all collapse back into the same dialogue. After that the speaker thro
       <div class="level-item">
         <p class="control has-addons">
           <a class="button" href="http://afeather123.github.io/posts/creating-interactive-dialogue-w-json-part-two/">
-            <span class="icon is-small"><i class="fa fa-chevron-left"></i></span>
+            <span class="icon is-small"><i class="fas fa-chevron-left"></i></span>
             <span class="is-hidden-touch is-hidden-desktop-only">
-              Creating Interactive Dialogue in Javascript with JSON Part 2: Redirects
+              Creating Interactive Dialogue in Javascript with JSON: Part 2
             </span>
             <span class="is-hidden-touch is-hidden-widescreen">
-              Creating Interactive Dialogue in Javascript with JSON Part 2: Redirects
+              Creating Interactive Dialogue in Javascript with JSON: Part 2
             </span>
             <span class="is-hidden-mobile is-hidden-desktop">
               Creating Interactive Dialogue in Javascript with...
@@ -660,7 +620,7 @@ which then all collapse back into the same dialogue. After that the speaker thro
               About
             </span>
             
-            <span class="icon is-small"><i class="fa fa-chevron-right"></i></span>
+            <span class="icon is-small"><i class="fas fa-chevron-right"></i></span>
           </a>
         </p>
       </div>
@@ -671,158 +631,23 @@ which then all collapse back into the same dialogue. After that the speaker thro
 
 
       <br>
-      
-      <div class="container">
-  <div class="is-flex">
-    <span>
-      <a class="button">Share</a>
-    </span>
-
-    &nbsp;
-
-    <span>
-      
-      <a class="button"
-         href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-intro%2f">
-        <span class="icon"><i class="fa fa-facebook"></i></span>
-      </a>
-
-      
-      <a class="button"
-         href="https://twitter.com/intent/tweet?url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-intro%2f&text=Creating%20Interactive%20Dialogue%20in%20Javascript%20with%20JSON%20Part%201%3a%20The%20Problem">
-        <span class="icon"><i class="fa fa-twitter"></i></span>
-      </a>
-
-      
-      <a class="button"
-         href="https://news.ycombinator.com/submitlink?u=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-intro%2f">
-        <span class="icon"><i class="fa fa-hacker-news"></i></span>
-      </a>
-
-      
-      <a class="button"
-         href="https://reddit.com/submit?url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-intro%2f&title=Creating%20Interactive%20Dialogue%20in%20Javascript%20with%20JSON%20Part%201%3a%20The%20Problem">
-        <span class="icon"><i class="fa fa-reddit"></i></span>
-      </a>
-
-      
-      <a class="button"
-         href="https://plus.google.com/share?url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-intro%2f">
-        <span class="icon"><i class="fa fa-google-plus"></i></span>
-      </a>
-
-      
-      <a class="button"
-         href="https://www.linkedin.com/shareArticle?url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-intro%2f&title=Creating%20Interactive%20Dialogue%20in%20Javascript%20with%20JSON%20Part%201%3a%20The%20Problem">
-        <span class="icon"><i class="fa fa-linkedin"></i></span>
-      </a>
-
-      
-      <a class="button"
-         href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-intro%2f&title=Creating%20Interactive%20Dialogue%20in%20Javascript%20with%20JSON%20Part%201%3a%20The%20Problem&caption=">
-        <span class="icon"><i class="fa fa-tumblr"></i></span>
-      </a>
-
-      
-      <a class="button"
-         href="https://pinterest.com/pin/create/bookmarklet/?media=&url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-intro%2f&description=Creating%20Interactive%20Dialogue%20in%20Javascript%20with%20JSON%20Part%201%3a%20The%20Problem">
-        <span class="icon"><i class="fa fa-pinterest"></i></span>
-      </a>
-
-      
-      <a class="button"
-         href="whatsapp://send?text=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-intro%2f">
-        <span class="icon"><i class="fa fa-whatsapp"></i></span>
-      </a>
-
-      
-      <a class="button"
-         href="https://web.skype.com/share?url=http%3a%2f%2fafeather123.github.io%2fposts%2fcreating-interactive-dialogue-w-json-intro%2f">
-        <span class="icon"><i class="fa fa-skype"></i></span>
-      </a>
 
       
       
-      
-      
-      
-
-      
-      
-      
-      
-      
-    </span>
-  </div>
-</div>
-
 
       <br>
 
       
       
-<div class="container">
-  <nav class="panel">
-    <p class="panel-heading">Related</p>
-    <a class="panel-block" href="http://afeather123.github.io/posts/creating-interactive-dialogue-w-json-part-three/">
-      <span class="icon is-small"><i class="fa fa-chevron-right"></i></span>
-      <span>&nbsp;</span>
-      <span>Creating Interactive Dialogue With Json Part 3: Choices&nbsp;
-      
-      <div class="tag">Game Development</div>
-      
-      <div class="tag">Javascript</div>
-      
-      </span>
-    </a>
-    <a class="panel-block" href="http://afeather123.github.io/posts/creating-interactive-dialogue-w-json-part-two/">
-      <span class="icon is-small"><i class="fa fa-chevron-right"></i></span>
-      <span>&nbsp;</span>
-      <span>Creating Interactive Dialogue in Javascript with JSON Part 2: Redirects&nbsp;
-      
-      <div class="tag">Game Development</div>
-      
-      <div class="tag">Javascript</div>
-      
-      </span>
-    </a>
-  </nav>
-</div>
 
-
-      <br>
-
-      <div class="container">
-        <div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "afeather123-github-io" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-      </div>
     </section>
-    
 
     <footer class="footer">
   <div class="container">
     <nav class="level">
 
       <div class="level-item has-text-centered">
-        <a href="/posts/" class="heading">
+        <a href="http://afeather123.github.io/posts/" class="heading">
           <span class="header">Posts</span>
         </a>
       </div>
@@ -833,12 +658,13 @@ which then all collapse back into the same dialogue. After that the speaker thro
 
       <div class="level-left has-text-centered">
         <div class="level-item">
-          <form class="control has-icon has-icon-right" method="get"
+          <form class="control has-icons has-icons-right" method="get"
                 action="https://duckduckgo.com">
             <input class="input" type="text" name="q" maxlength="255"
                    placeholder="Search">
-            <input class="input" type="hidden" name="sites" value="http://afeather123.github.io">
-            <span class="icon is-small"><i class="fa fa-search"></i></span>
+            <input class="input" type="hidden" name="sites"
+                   value="http://afeather123.github.io">
+            <span class="icon is-small is-right"><i class="fas fa-search"></i></span>
           </form>
         </div>
       </div>
@@ -846,14 +672,15 @@ which then all collapse back into the same dialogue. After that the speaker thro
       <div class="level-right has-text-centered">
         <div class="level-item">
 
-          <a class="button" href="http://afeather123.github.io">
-            <span class="icon"><i class="fa fa-home"></i></span>
+          <a class="button" href="/">
+            <span class="icon"><i class="fas fa-home"></i></span>
           </a> &nbsp;
 
           
 
-          <a class="button" href="http://afeather123.github.io/index.xml">
-            <span class="icon"><i class="fa fa-rss"></i></span>
+          <a class="button"
+             href="">
+            <span class="icon"><i class="fas fa-rss"></i></span>
           </a>
 
         </div>
